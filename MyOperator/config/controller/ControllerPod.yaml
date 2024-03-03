@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    mylable: mycontroller
+  name: mycontroller
+  namespace: fns
+spec:
+  containers:
+    - args:
+        - 1d
+      command:
+        - sleep
+      image: docker.sangfor.com/scc-docker-history/repairman:m.feature.scc.exposedconfig.20240131162546
+      imagePullPolicy: IfNotPresent
+      name: mycontroller
+      resources: {}
+      volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: my-sa-token-6qrgj
+          readOnly: true
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  serviceAccount: my-sa
+  serviceAccountName: my-sa
+  nodeName: worker-2-5459a9
+  tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+  volumes:
+    - name: my-sa-token-6qrgj
+      secret:
+        defaultMode: 420
+        secretName: my-sa-token-6qrgj
+
