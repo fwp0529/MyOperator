@@ -13,14 +13,7 @@
 
 ### CRD创建
 
-SCC后台执行以下命令： kubectl apply -f ./config/resource/CRD.yaml
-
-
-### SCC后台运行controller
-
-1、从KM上copy kubeconfig粘贴到同目录的kubeconfig文件中
-
-2、直接执行myoperator
+执行命令： kubectl apply -f ./config/resource/CRD.yaml
 
 
 
